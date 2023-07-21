@@ -3,8 +3,8 @@ import './App.css'
 import Square from './components/Square'
 
 const TURNS = {
-  X: "x",
-  O: "o"
+  X: "X",
+  O: "O"
 }
 
 const initialBoard = Array(9).fill(null)
@@ -30,6 +30,14 @@ function App() {
     const newWinner = checkWinner(newBoard)
     if(newWinner){
       setWinner(newWinner)
+      const gameId = new Date().getUTCMilliseconds()
+      localStorage.setItem(`winner${gameId}`, newWinner)
+    }
+
+    if(!checkIfDraw(newBoard, newWinner)){
+      const gameId = new Date().getUTCMilliseconds()
+      localStorage.setItem(`winner${gameId}`, "DRAW")
+      setWinner(false)
     }
   }
 
@@ -56,13 +64,29 @@ function App() {
     return null
   }
 
+  const checkIfDraw= (newBoard, win)=> {
+    let stillCanPlay = false;
+    for (let i = 0; i < newBoard.length; i++) {
+      if(newBoard[i] == null){
+        stillCanPlay = true
+        return true;
+      }
+    }
+    if(win == null || win == false) return false
+    else return true
+  }
+
+  const resetGame = ()=> {
+    setBoard(initialBoard)
+    setWinner(null)
+  }
 
 
   //________RENDERIZADO_________
   return (
     <>
       <main className='board'>
-      <h3>Tic Tac Toe</h3>
+      <h1>Tic Tac Toe</h1>
         <section className='game'>
           {board.map((cell, index)=>{
             return(
@@ -80,6 +104,15 @@ function App() {
           <Square isSelected={turn === TURNS.X} children={"x"}/>
           <Square isSelected={turn === TURNS.O} children={"o"}/>
         </section>
+        {winner != null && 
+          <section className='winner'>
+            <div className='text'>
+              {winner != null && winner != false && <h2>El ganador es {winner}</h2>}
+              {winner != null && winner == false && <h2>Empate</h2>}
+              <button className='win' onClick={resetGame}>Jugar de Nuevo</button>
+            </div>
+          </section>
+        }
       </main>
     </>    
   )
