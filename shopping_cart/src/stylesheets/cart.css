@@ -1,0 +1,22 @@
+.see_cart{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #48f;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cart{
+  background: red;
+  display: none;
+}
+
+.see_cart ~ input:checked ~ .cart{
+  display: block;
+}
