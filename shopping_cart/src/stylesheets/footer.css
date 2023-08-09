@@ -1,5 +1,6 @@
 .footer{
-  width: 30vw;
+  min-width: 30vw;
+  height: 100px;
   background: rgba(78, 78, 78, 0.9);
   color: #f2f2f2;
   padding: 1rem;

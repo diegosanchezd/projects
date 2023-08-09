@@ -1,7 +1,11 @@
 import React from 'react'
 import { AddToCartIcon } from './Icons'
+import useCart from '../helpers/useCart'
 
-const Product = ({title, image, price}) => {
+const Product = ({title, image, price, addToCart}) => {
+
+  // const { AddToCart } = useCart();
+
   return (
     <div>
       <h3>{title}-{price}$</h3>
@@ -9,7 +13,7 @@ const Product = ({title, image, price}) => {
         <img src={image} alt={title} />
       </div>
       <div>
-        <button>{<AddToCartIcon />}</button>
+        <button onClick={addToCart}>{<AddToCartIcon />}</button>
       </div>
     </div>
   )

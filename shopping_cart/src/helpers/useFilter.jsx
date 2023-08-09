@@ -6,7 +6,7 @@ import { FiltersContext } from '../context/filters'
 //   minPrice: 0
 // }
 
-const useFilter = (products) => {
+const useFilter = () => {
   // const [filter, setFilter] = useState(initalFilter)
 
   const { filter , setFilter } = useContext(FiltersContext)

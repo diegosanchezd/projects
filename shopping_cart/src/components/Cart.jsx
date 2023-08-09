@@ -13,7 +13,9 @@ const Cart = () => {
       </label>
       <input type="checkbox" id={cartButtonId} hidden />
       <aside className='cart'>
-        <h3>Hola soy el carrito</h3>
+        <div>
+          <h3>COntent...</h3>
+        </div>
       </aside>
     </>
     
